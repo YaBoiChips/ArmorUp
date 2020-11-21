@@ -2,6 +2,7 @@ package AOChips.ArmorUp;
 
 
 import AOChips.ArmorUp.classes.ModContainerTypes;
+import AOChips.ArmorUp.classes.ModRecipeSerializers;
 import AOChips.ArmorUp.classes.ModRecipeTypes;
 import AOChips.ArmorUp.client.gui.ForgingTableScreen;
 import AOChips.ArmorUp.lists.ItemList;
@@ -35,7 +36,9 @@ public class ArmorUp {
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
-        ModContainerTypes.CONTAINER_TYPES.register(modEventBus); }
+        ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
+        modEventBus.register(new ModRecipeSerializers());
+    }
 
     public static void register() {
         LOGGER.info("AU: Registered");

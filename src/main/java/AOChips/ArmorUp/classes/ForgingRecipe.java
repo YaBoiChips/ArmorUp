@@ -1,20 +1,18 @@
 package AOChips.ArmorUp.classes;
 
+import AOChips.ArmorUp.api.crafting.IForgingRecipe;
 import AOChips.ArmorUp.lists.BlockList;
 import com.google.gson.JsonObject;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.*;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class ForgingRecipe implements IRecipe<IInventory> {
+public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
 
     private final Ingredient base;
     private final Ingredient addition;
@@ -70,14 +68,20 @@ public class ForgingRecipe implements IRecipe<IInventory> {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return ModRecipeSerializer.FORGING;
+        return ModRecipeSerializers.FORGING;
     }
 
     @Override
     public IRecipeType<?> getType() {
         return ModRecipeTypes.FORGING;
     }
-    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements ModRecipeSerializer<ForgingRecipe> {
+
+    @Override
+    public int getLavaCost() {
+        return 1;
+    }
+
+    public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ForgingRecipe> {
         public ForgingRecipe read(ResourceLocation recipeId, JsonObject json) {
             Ingredient ingredient = Ingredient.deserialize(JSONUtils.getJsonObject(json, "base"));
             Ingredient ingredient1 = Ingredient.deserialize(JSONUtils.getJsonObject(json, "addition"));

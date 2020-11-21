@@ -17,33 +17,18 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.Objects;
+
 @Mod.EventBusSubscriber(modid = ArmorUp.AU, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class NBTTest {}
-
- /*   @SubscribeEvent
-    public static void addNBT(TickEvent.PlayerTickEvent event) {
-        ItemStack stack = event.player.getHeldItemMainhand();
-        PlayerEntity player = event.player;
-        CompoundNBT nbt = stack.getTag();
-        assert nbt != null;
-        if (player.getHeldItemMainhand().getItem() == Items.DIAMOND_HELMET) {
-            if (nbt.getInt("glow") <= 0) {
-                nbt.putInt("glow", 1);
-                System.out.println(nbt.getInt("glow"));
-            }
-        }
-    }
-
+public class NBTTest {
     @SubscribeEvent
     public static void makeGlow(TickEvent.PlayerTickEvent event) {
         ItemStack stack = event.player.getHeldItemMainhand();
         PlayerEntity player = event.player;
-        CompoundNBT nbt = stack.getTag();
-        if (player.getHeldItemMainhand().getItem() != Items.PODZOL) {
-            if (nbt.getInt("glow") == 1) {
+        if (stack.hasTag()) {
+            if ((stack.getTag()).hasUniqueId("glow")) {
                 player.addPotionEffect(new EffectInstance(Effects.GLOWING, 10));
             }
         }
     }
-}*/
-
+}

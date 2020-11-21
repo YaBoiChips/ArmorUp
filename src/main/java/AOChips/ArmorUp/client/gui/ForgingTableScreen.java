@@ -1,5 +1,6 @@
 package AOChips.ArmorUp.client.gui;
 
+import AOChips.ArmorUp.ArmorUp;
 import AOChips.ArmorUp.containers.ForgingTableContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -10,21 +11,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 public class ForgingTableScreen extends AbstractRepairScreen<ForgingTableContainer> {
-    private static final ResourceLocation GUI_TEXTURE = new ResourceLocation("textures/gui/container/smithing.png");
+    private static final ResourceLocation GUI_TEXTURE = new ResourceLocation(ArmorUp.AU, "textures/gui/container/forging.png");
 
     public ForgingTableScreen(ForgingTableContainer container, PlayerInventory playerInventory, ITextComponent title) {
         super(container, playerInventory, title, GUI_TEXTURE);
-        this.titleX = 60;
-        this.titleY = 18;
+        this.titleX = 80;
+        this.titleY = 10;
     }
-
-    @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-        this.renderBackground(matrixStack);
-        super.render(matrixStack, mouseX, mouseY, partialTicks);
-        this.renderHoveredTooltip(matrixStack,mouseX,mouseY);
-    }
-
 
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int x, int y) {
@@ -32,4 +25,5 @@ public class ForgingTableScreen extends AbstractRepairScreen<ForgingTableContain
         super.drawGuiContainerForegroundLayer(matrixStack, x, y);
     }
 }
+
 
