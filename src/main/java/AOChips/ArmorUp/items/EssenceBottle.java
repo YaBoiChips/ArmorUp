@@ -24,7 +24,7 @@ public class EssenceBottle extends Item {
         BlockPos blockpos = context.getPos();
         BlockState blockstate = world.getBlockState(blockpos);
         if(blockstate.getBlock() == Blocks.SOUL_FIRE) {
-            player.inventory.removeStackFromSlot(player.inventory.getSlotFor(ItemList.SOUL_FIRE_ESSENCE_EMPTY.getDefaultInstance()));
+            player.inventory.removeStackFromSlot(player.inventory.getSlotFor(ItemList.ESSENCE_BOTTLE.getDefaultInstance()));
             player.inventory.addItemStackToInventory(new ItemStack(ItemList.SOUL_FIRE_ESSENCE));
             world.destroyBlock(blockpos, false);
         }
