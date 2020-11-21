@@ -3,12 +3,16 @@ package AOChips.ArmorUp.classes;
 import AOChips.ArmorUp.api.crafting.IForgingRecipe;
 import AOChips.ArmorUp.lists.BlockList;
 import com.google.gson.JsonObject;
+import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -33,18 +37,30 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
 
     @Override
     public ItemStack getCraftingResult(IInventory inv) {
-        ItemStack itemStack =this.result.copy();
-        CompoundNBT compoundNBT = inv.getStackInSlot(0).getTag();
-        CompoundNBT itemTag = new CompoundNBT();
-        if (compoundNBT != null){
-            itemStack.setTag(compoundNBT.getCompound("glow"));
-        }
-        return itemStack;
+
+        ItemStack itemStack =ItemStack.EMPTY;
+
+        for(int j = 0; j < inv.getSizeInventory(); ++j) {
+            ItemStack itemStack1 = inv.getStackInSlot(1);
+                ItemStack itemStack2 = this.result;
+            CompoundNBT compoundnbt = itemStack2.getTag().copy();
+                if (!itemStack1.isEmpty()) {
+                    if (itemStack1.getItem() == Items.GLOWSTONE_DUST) {
+                        compoundnbt.putInt("glow", 1);
+                        itemStack2.setTag(compoundnbt);
+                        return itemStack2;
+                        }else {
+                        return ItemStack.EMPTY;
+                    }
+                    }
+                }
+
+        return this.result;
     }
 
     @Override
     public boolean canFit(int width, int height) {
-        return width * height >=2;
+        return width * height >= 2;
     }
 
     @Override
@@ -81,7 +97,17 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
         return 1;
     }
 
+
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ForgingRecipe> {
+
+        @Override
+        public void write(PacketBuffer buffer, ForgingRecipe recipe) {
+            recipe.base.write(buffer);
+            recipe.addition.write(buffer);
+            buffer.writeItemStack(recipe.result);
+
+        }
+
         public ForgingRecipe read(ResourceLocation recipeId, JsonObject json) {
             Ingredient ingredient = Ingredient.deserialize(JSONUtils.getJsonObject(json, "base"));
             Ingredient ingredient1 = Ingredient.deserialize(JSONUtils.getJsonObject(json, "addition"));
@@ -96,12 +122,6 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
             return new ForgingRecipe(recipeId, ingredient, ingredient1, itemstack);
         }
 
-        @Override
-        public void write(PacketBuffer buffer, ForgingRecipe recipe) {
-            recipe.base.write(buffer);
-            recipe.addition.write(buffer);
-            buffer.writeItemStack(recipe.result);
-
-        }
     }
 }
+

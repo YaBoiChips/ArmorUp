@@ -26,6 +26,7 @@ public class NBTTest {
         ItemStack stack = event.player.getHeldItemMainhand();
         PlayerEntity player = event.player;
         if (stack.hasTag()) {
+            assert stack.getTag() != null;
             if ((stack.getTag()).hasUniqueId("glow")) {
                 player.addPotionEffect(new EffectInstance(Effects.GLOWING, 10));
             }

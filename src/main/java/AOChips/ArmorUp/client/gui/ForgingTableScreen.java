@@ -15,7 +15,7 @@ public class ForgingTableScreen extends AbstractRepairScreen<ForgingTableContain
 
     public ForgingTableScreen(ForgingTableContainer container, PlayerInventory playerInventory, ITextComponent title) {
         super(container, playerInventory, title, GUI_TEXTURE);
-        this.titleX = 80;
+        this.titleX = 90;
         this.titleY = 10;
     }
 

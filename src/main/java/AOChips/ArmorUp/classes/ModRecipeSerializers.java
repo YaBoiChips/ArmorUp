@@ -2,6 +2,7 @@ package AOChips.ArmorUp.classes;
 
 import AOChips.ArmorUp.ArmorUp;
 import AOChips.ArmorUp.api.crafting.IForgingRecipe;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;

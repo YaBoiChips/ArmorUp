@@ -5,5 +5,7 @@ import net.minecraft.item.Item;
 public class ItemList {
 
     public static Item FORGING_TABLE;
+    public static Item ESSENCE_BOTTLE;
+    public static Item SOUL_FIRE_ESSENCE;
 
 }
