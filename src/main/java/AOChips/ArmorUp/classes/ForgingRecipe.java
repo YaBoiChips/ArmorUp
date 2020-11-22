@@ -38,23 +38,39 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
     @Override
     public ItemStack getCraftingResult(IInventory inv) {
 
-        ItemStack itemStack =ItemStack.EMPTY;
-
         for(int j = 0; j < inv.getSizeInventory(); ++j) {
             ItemStack itemStack1 = inv.getStackInSlot(1);
-                ItemStack itemStack2 = this.result;
+            ItemStack itemStack2 = this.result;
             CompoundNBT compoundnbt = itemStack2.getTag().copy();
-                if (!itemStack1.isEmpty()) {
-                    if (itemStack1.getItem() == Items.GLOWSTONE_DUST) {
-                        compoundnbt.putInt("glow", 1);
-                        itemStack2.setTag(compoundnbt);
-                        return itemStack2;
-                        }else {
-                        return ItemStack.EMPTY;
-                    }
-                    }
+            if (!itemStack1.isEmpty()) {
+                if (itemStack1.getItem() == Items.GLOWSTONE_DUST) {
+                    compoundnbt.putInt("glow", 1);
+                    itemStack2.setTag(compoundnbt);
+                    return itemStack2;
+                } else {
+                    return ItemStack.EMPTY;
                 }
+            }
 
+            else if (!itemStack1.isEmpty()) {
+                if (itemStack1.getItem() == Items.RABBIT_FOOT) {
+                    compoundnbt.putInt("luck", 1);
+                    itemStack2.setTag(compoundnbt);
+                    return itemStack2;
+                } else {
+                    return ItemStack.EMPTY;
+                }
+            }
+            else if (!itemStack1.isEmpty()) {
+                if (itemStack1.getItem() == Items.GHAST_TEAR) {
+                    compoundnbt.putInt("scared", 1);
+                    itemStack2.setTag(compoundnbt);
+                    return itemStack2;
+                } else {
+                    return ItemStack.EMPTY;
+                }
+            }
+        }
         return this.result;
     }
 
