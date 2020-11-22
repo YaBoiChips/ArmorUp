@@ -28,6 +28,16 @@ public class EssenceBottle extends Item {
             player.inventory.addItemStackToInventory(new ItemStack(ItemList.SOUL_FIRE_ESSENCE));
             world.destroyBlock(blockpos, false);
         }
+        if(blockstate.getBlock() == Blocks.SHROOMLIGHT) {
+            player.inventory.removeStackFromSlot(player.inventory.getSlotFor(ItemList.ESSENCE_BOTTLE.getDefaultInstance()));
+            player.inventory.addItemStackToInventory(new ItemStack(ItemList.SHROOMLIGHT_ESSENCE));
+            world.destroyBlock(blockpos, false);
+        }
+        if(blockstate.getBlock() == Blocks.BLUE_ICE) {
+            player.inventory.removeStackFromSlot(player.inventory.getSlotFor(ItemList.ESSENCE_BOTTLE.getDefaultInstance()));
+            player.inventory.addItemStackToInventory(new ItemStack(ItemList.FROST_ESSENCE));
+            world.destroyBlock(blockpos, false);
+        }
         return ActionResultType.CONSUME;
     }
 }

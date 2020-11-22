@@ -57,7 +57,7 @@ public class NBTReader {
         ItemStack stack = event.player.inventory.armorInventory.get(0);
         if (stack.hasTag()) {
             if (stack.getTag().getInt("scared") >=1 && player.getHealth() <= 4) {
-                player.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 500));
+                player.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 500, 0, false, false));
             }
         }
     }
