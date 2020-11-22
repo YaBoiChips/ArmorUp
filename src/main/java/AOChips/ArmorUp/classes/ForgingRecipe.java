@@ -52,7 +52,7 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
                 }
             }
 
-            if (!itemStack1.isEmpty()) {
+            else if (!itemStack1.isEmpty()) {
                 if (itemStack1.getItem() == Items.RABBIT_FOOT) {
                     compoundnbt.putInt("luck", 1);
                     itemStack2.setTag(compoundnbt);
@@ -61,7 +61,7 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
                     return ItemStack.EMPTY;
                 }
             }
-            if (!itemStack1.isEmpty()) {
+            else if (!itemStack1.isEmpty()) {
                 if (itemStack1.getItem() == Items.GHAST_TEAR) {
                     compoundnbt.putInt("scared", 1);
                     itemStack2.setTag(compoundnbt);
