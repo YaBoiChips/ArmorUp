@@ -20,9 +20,9 @@ public class ItemRegistry {
 
                 ItemList.FORGING_TABLE = new BlockItem(BlockList.FORGING_TABLE, new Item.Properties().group(ArmorUp.AUTAB)).setRegistryName(BlockList.FORGING_TABLE.getRegistryName()),
                 ItemList.ESSENCE_BOTTLE = new EssenceBottle(new Item.Properties().group(ArmorUp.AUTAB)).setRegistryName("essence_bottle"),
-                ItemList.SOUL_FIRE_ESSENCE = new Item(new Item.Properties().group(ArmorUp.AUTAB)).setRegistryName("soul_fire_essence")
-
-
+                ItemList.SOUL_FIRE_ESSENCE = new Item(new Item.Properties().group(ArmorUp.AUTAB)).setRegistryName("soul_fire_essence"),
+                ItemList.SHROOMLIGHT_ESSENCE = new Item(new Item.Properties().group(ArmorUp.AUTAB)).setRegistryName("shroomlight_essence"),
+                ItemList.FROST_ESSENCE = new Item(new Item.Properties().group(ArmorUp.AUTAB)).setRegistryName("frost_essence")
         );
     }
 }
