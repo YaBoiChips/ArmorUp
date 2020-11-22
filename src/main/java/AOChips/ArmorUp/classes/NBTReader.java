@@ -30,24 +30,24 @@ public class NBTReader {
     public static void makeGlow(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
         World world = event.player.getEntityWorld();
-        AxisAlignedBB axisalignedbb = (new AxisAlignedBB(player.getPosition())).grow(10).expand(0.0D, world.getHeight(), 0.0D);
+        AxisAlignedBB axisalignedbb = (new AxisAlignedBB(player.getPosition())).grow(4).expand(0.0D, world.getHeight(), 0.0D);
         ItemStack stack = event.player.inventory.armorInventory.get(3);
         List<MobEntity> list = world.getEntitiesWithinAABB(MobEntity.class, axisalignedbb);
         for (MobEntity mobEntity : list)
         if (stack.hasTag()) {
             assert stack.getTag() != null;
             if (stack.getTag().getInt("glow") >=1) {
-                mobEntity.addPotionEffect(new EffectInstance(Effects.GLOWING, 10));
+                mobEntity.addPotionEffect(new EffectInstance(Effects.GLOWING, 10, 0, false, false));
             }
         }
     }
     @SubscribeEvent
     public static void getLucky(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
-        ItemStack stack = event.player.getHeldItemMainhand();
+        ItemStack stack = event.player.inventory.armorInventory.get(0);
         if (stack.hasTag()) {
             if (stack.getTag().getInt("luck") >=1) {
-                player.addPotionEffect(new EffectInstance(Effects.LUCK, 10));
+                player.addPotionEffect(new EffectInstance(Effects.LUCK, 100, 0, false, false));
             }
         }
     }
@@ -56,8 +56,8 @@ public class NBTReader {
         PlayerEntity player = event.player;
         ItemStack stack = event.player.inventory.armorInventory.get(0);
         if (stack.hasTag()) {
-            if (stack.getTag().getInt("scared") >=1 && player.getHealth() == 4) {
-                player.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 1000));
+            if (stack.getTag().getInt("scared") >=1 && player.getHealth() <= 4) {
+                player.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 500));
             }
         }
     }
