@@ -1,12 +1,12 @@
 {
   "type": "au:forging",
   "base": {
-    "item": "minecraft:gold_helmet"
+    "item": "minecraft:golden_helmet"
   },
   "addition": {
     "item": "au:shroomlight_essence"
   },
   "result": {
-    "item": "minecraft:gold_helmet"
+    "item": "minecraft:golden_helmet"
   }
 }

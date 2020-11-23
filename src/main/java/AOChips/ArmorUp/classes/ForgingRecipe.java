@@ -3,18 +3,14 @@ package AOChips.ArmorUp.classes;
 import AOChips.ArmorUp.api.crafting.IForgingRecipe;
 import AOChips.ArmorUp.lists.BlockList;
 import AOChips.ArmorUp.lists.ItemList;
-import AOChips.ArmorUp.registries.ItemRegistry;
 import com.google.gson.JsonObject;
-import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -61,13 +57,22 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
                             compoundnbt.putInt("scared", 1);
                             itemStack2.setTag(compoundnbt);
                             return itemStack2;
-                        } else {
-                            return ItemStack.EMPTY;
+                        }
+                    }
+                        if (!itemStack1.isEmpty()) {
+                            if (itemStack1.getItem() == ItemList.FROST_ESSENCE) {
+                                compoundnbt.putInt("frozen", 1);
+                                itemStack2.setTag(compoundnbt);
+                                return itemStack2;
+                            } else {
+                                return ItemStack.EMPTY;
+                            }
                         }
                     }
                 }
             }
-        }
+
+
         return this.result;
     }
 
@@ -109,6 +114,7 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
     public int getLavaCost() {
         return 1;
     }
+
 
 
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ForgingRecipe> {
