@@ -8,6 +8,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -30,7 +31,7 @@ public class NBTReader {
     public static void makeGlow(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
         World world = event.player.getEntityWorld();
-        AxisAlignedBB axisalignedbb = (new AxisAlignedBB(player.getPosition())).grow(4).expand(0.0D, world.getHeight(), 0.0D);
+        AxisAlignedBB axisalignedbb = (new AxisAlignedBB(player.getPosition())).grow(6).expand(0.0D, world.getHeight(), 0.0D);
         ItemStack stack = event.player.inventory.armorInventory.get(3);
         List<MobEntity> list = world.getEntitiesWithinAABB(MobEntity.class, axisalignedbb);
         for (MobEntity mobEntity : list)
@@ -41,6 +42,7 @@ public class NBTReader {
             }
         }
     }
+
     @SubscribeEvent
     public static void getLucky(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
@@ -53,11 +55,13 @@ public class NBTReader {
     }
     @SubscribeEvent
     public static void getScared(TickEvent.PlayerTickEvent event) {
+        World world = event.player.getEntityWorld();
         PlayerEntity player = event.player;
         ItemStack stack = event.player.inventory.armorInventory.get(0);
         if (stack.hasTag()) {
             if (stack.getTag().getInt("scared") >=1 && player.getHealth() <= 4) {
                 player.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 500, 0, false, false));
+//                world.addParticle(ParticleTypes.LARGE_SMOKE, player.getPosXRandom(0.5D), player.getPosYRandom(), player.getPosZRandom(0.5D), 0.0D, 0.0D, 0.0D);
             }
         }
     }

@@ -2,6 +2,8 @@ package AOChips.ArmorUp.classes;
 
 import AOChips.ArmorUp.api.crafting.IForgingRecipe;
 import AOChips.ArmorUp.lists.BlockList;
+import AOChips.ArmorUp.lists.ItemList;
+import AOChips.ArmorUp.registries.ItemRegistry;
 import com.google.gson.JsonObject;
 import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.inventory.IInventory;
@@ -43,7 +45,7 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
             ItemStack itemStack2 = this.result;
             CompoundNBT compoundnbt = itemStack2.getTag().copy();
             if (!itemStack1.isEmpty()) {
-                if (itemStack1.getItem() == Items.GLOWSTONE_DUST) {
+                if (itemStack1.getItem() == ItemList.SHROOMLIGHT_ESSENCE) {
                     compoundnbt.putInt("glow", 1);
                     itemStack2.setTag(compoundnbt);
                     return itemStack2;
