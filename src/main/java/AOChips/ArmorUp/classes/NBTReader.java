@@ -10,6 +10,7 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
@@ -30,14 +31,12 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(modid = ArmorUp.AU, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class NBTReader {
-    public float fallDistance;
-
     @SubscribeEvent
     public static void makeGlow(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
         World world = event.player.getEntityWorld();
         AxisAlignedBB axisalignedbb = (new AxisAlignedBB(player.getPosition())).grow(6).expand(0.0D, world.getHeight(), 0.0D);
-        ItemStack stack = event.player.inventory.armorInventory.get(3);
+        ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.HEAD);
         List<MobEntity> list = world.getEntitiesWithinAABB(MobEntity.class, axisalignedbb);
         for (MobEntity mobEntity : list)
             if (stack.hasTag()) {
@@ -51,7 +50,7 @@ public class NBTReader {
     @SubscribeEvent
     public static void getLucky(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
-        ItemStack stack = event.player.inventory.armorInventory.get(0);
+        ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
             if (stack.getTag().getInt("luck") >= 1) {
                 player.addPotionEffect(new EffectInstance(Effects.LUCK, 100, 0, false, false));
@@ -63,7 +62,7 @@ public class NBTReader {
     public static void getScared(TickEvent.PlayerTickEvent event) {
         World world = event.player.getEntityWorld();
         PlayerEntity player = event.player;
-        ItemStack stack = event.player.inventory.armorInventory.get(0);
+        ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
             if (stack.getTag().getInt("scared") >= 1 && player.getHealth() <= 4) {
                 player.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 500, 0, false, false));
@@ -75,7 +74,7 @@ public class NBTReader {
     public static void getFrozen(TickEvent.PlayerTickEvent event) {
         World world = event.player.getEntityWorld();
         PlayerEntity player = event.player;
-        ItemStack stack = event.player.inventory.armorInventory.get(2);
+        ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.CHEST);
         if (stack.hasTag()) {
             if (stack.getTag().getInt("frozen") >= 1 && player.getHealth() <= 4) {
                 player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 200, 250, false, false));
@@ -92,7 +91,7 @@ public class NBTReader {
         BlockPos pos = new BlockPos(player.getPosX(), player.getPosY() - 0.10, player.getPosZ());
         BlockState state = world.getBlockState(pos);
         Vector3d vec3d = event.player.getMotion();
-        ItemStack stack = event.player.inventory.armorInventory.get(0);
+        ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
             if (stack.getTag().getInt("bouncy") >= 1) {
                 if (state.getBlock() != Blocks.GRASS && state.getBlock() != Blocks.WATER && state.getBlock() != Blocks.AIR && state.getBlock() != Blocks.TORCH && state.getBlock() != Blocks.CAVE_AIR && state.getBlock() != Blocks.VOID_AIR) {
@@ -135,6 +134,21 @@ public class NBTReader {
         }
     }
 
-
+    @SubscribeEvent
+    public static void darkSee(TickEvent.PlayerTickEvent event) {
+        World world = event.player.getEntityWorld();
+        PlayerEntity player = event.player;
+        ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.HEAD);
+        BlockPos pos = event.player.getPosition();
+        int i = world.getLight(pos);
+        if (stack.hasTag()) {
+            if (stack.getTag().getInt("darksee") >= 1) {
+                if (i >= 1) {
+                    System.out.println("pog");
+                    player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 10, 0, false, false));
+                }
+            }
+        }
+    }
 }
 

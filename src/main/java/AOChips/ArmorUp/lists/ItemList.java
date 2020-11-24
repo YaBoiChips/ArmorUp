@@ -9,5 +9,6 @@ public class ItemList {
     public static Item SOUL_FIRE_ESSENCE;
     public static Item SHROOMLIGHT_ESSENCE;
     public static Item FROST_ESSENCE;
+    public static Item ENDER_ESSENCE;
 
 }
