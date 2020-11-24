@@ -58,12 +58,18 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
                             itemStack2.setTag(compoundnbt);
                             return itemStack2;
                         }
-                    }
                         if (!itemStack1.isEmpty()) {
                             if (itemStack1.getItem() == ItemList.FROST_ESSENCE) {
                                 compoundnbt.putInt("frozen", 1);
                                 itemStack2.setTag(compoundnbt);
                                 return itemStack2;
+                            }
+                            if(!itemStack1.isEmpty()) {
+                                if(itemStack1.getItem() == Items.SLIME_BALL) {
+                                    compoundnbt.putInt("bouncy", 1);
+                                    itemStack2.setTag(compoundnbt);
+                                    return itemStack2;
+                                }
                             } else {
                                 return ItemStack.EMPTY;
                             }
@@ -71,6 +77,7 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
                     }
                 }
             }
+        }
 
 
         return this.result;
