@@ -64,14 +64,21 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
                                 itemStack2.setTag(compoundnbt);
                                 return itemStack2;
                             }
-                            if(!itemStack1.isEmpty()) {
-                                if(itemStack1.getItem() == Items.SLIME_BALL) {
+                            if (!itemStack1.isEmpty()) {
+                                if (itemStack1.getItem() == Items.SLIME_BALL) {
                                     compoundnbt.putInt("bouncy", 1);
                                     itemStack2.setTag(compoundnbt);
                                     return itemStack2;
                                 }
-                            } else {
-                                return ItemStack.EMPTY;
+                                if (!itemStack1.isEmpty()) {
+                                    if (itemStack1.getItem() == Items.MAGMA_CREAM) {
+                                        compoundnbt.putInt("unhot", 1);
+                                        itemStack2.setTag(compoundnbt);
+                                        return itemStack2;
+                                    }
+                                } else {
+                                    return ItemStack.EMPTY;
+                                }
                             }
                         }
                     }

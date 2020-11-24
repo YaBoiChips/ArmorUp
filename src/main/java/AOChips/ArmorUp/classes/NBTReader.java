@@ -12,6 +12,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -120,5 +121,20 @@ public class NBTReader {
             }
         }
     }
+    @SubscribeEvent
+    public static void undoMagma(LivingHurtEvent event) {
+        LivingEntity entity = event.getEntityLiving();
+        ItemStack stack = entity.getItemStackFromSlot(EquipmentSlotType.FEET);
+        DamageSource source = event.getSource();
+        if (stack.hasTag()) {
+            if (stack.getTag().getInt("unhot") >= 1) {
+                if (source == DamageSource.HOT_FLOOR) {
+                    event.setAmount(0.0f);
+                }
+            }
+        }
+    }
+
+
 }
 
