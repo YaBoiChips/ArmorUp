@@ -87,7 +87,7 @@ public class NBTReader {
                 if (stack.getTag().getInt("frozen") >= 1 && player.getHealth() <= 4) {
                     player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 200, 250, false, false));
                     player.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 200, 13, false, false));
-                    player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 35, 2, false, false));
+                    player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 50, 2, false, false));
                     player.getCooldownTracker().setCooldown(stack.getItem(), 20000);
                 }
             }
