@@ -156,6 +156,7 @@ public class NBTReader {
     }
     @SubscribeEvent
     public static void scaredTp(TickEvent.PlayerTickEvent event) {
+        //DOESN'T WORK YET
         World world = event.player.getEntityWorld();
         PlayerEntity player = event.player;
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.HEAD);
