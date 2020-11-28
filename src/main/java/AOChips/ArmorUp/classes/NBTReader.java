@@ -7,6 +7,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -117,13 +118,14 @@ public class NBTReader {
             if (event.getEntity() instanceof PlayerEntity) {
                 if (stack.hasTag()) {
                     if (stack.getTag().getInt("bouncy") >= 1) {
-                        if(!entity.isSneaking())
-                        event.setDistance(0f);
+                        if (!entity.isSneaking())
+                            event.setDistance(0f);
                     }
                 }
             }
         }
     }
+
     @SubscribeEvent
     public static void undoMagma(LivingHurtEvent event) {
         LivingEntity entity = event.getEntityLiving();
@@ -154,42 +156,26 @@ public class NBTReader {
             }
         }
     }
+
     @SubscribeEvent
     public static void scaredTp(TickEvent.PlayerTickEvent event) {
-        //DOESN'T WORK YET
         World world = event.player.getEntityWorld();
         PlayerEntity player = event.player;
-        ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.HEAD);
+        ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
             if (stack.getTag().getInt("scaredtp") >= 1 && player.getHealth() <= 4) {
                 if (!world.isRemote) {
-                    double d0 = player.getPosX();
+                    double d0 = player.getPosX() + 16.0;
                     double d1 = player.getPosY();
-                    double d2 = player.getPosZ();
+                    double d2 = player.getPosZ() +  16.0;
+                    player.attemptTeleport(d0, d1, d2, true);
+                    player.setHealth(5);
 
-                    for(int i = 0; i < 16; ++i) {
-                        double d3 = player.getPosX() + (player.getRNG().nextDouble() - 0.5D) * 16.0D;
-                        double d4 = MathHelper.clamp(player.getPosY() + (double)(player.getRNG().nextInt(16) - 8), 0.0D, (double)(world.func_234938_ad_() - 1));
-                        double d5 = player.getPosZ() + (player.getRNG().nextDouble() - 0.5D) * 16.0D;
-                        if (player.isPassenger()) {
-                            player.stopRiding();
-                        }
-
-                        if (player.attemptTeleport(d3, d4, d5, true)) {
-                            SoundEvent soundevent = SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
-                            world.playSound((PlayerEntity)null, d0, d1, d2, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                            player.playSound(soundevent, 1.0F, 1.0F);
-                            break;
-                        }
-                    }
-
-                    if (player instanceof PlayerEntity) {
-                        ((PlayerEntity)player).getCooldownTracker().setCooldown(stack.getItem(), 20);
-                    }
                 }
-            }
             }
         }
     }
+}
+
 
 
