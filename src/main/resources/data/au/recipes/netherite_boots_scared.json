@@ -1,0 +1,12 @@
+{
+  "type": "au:forging",
+  "base": {
+    "item": "minecraft:netherite_boots"
+  },
+  "addition": {
+    "item": "minecraft:ghast_tear"
+  },
+  "result": {
+    "item": "minecraft:netherite_boots"
+  }
+}

@@ -82,8 +82,15 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
                                             itemStack2.setTag(compoundnbt);
                                             return itemStack2;
                                         }
-                                    } else {
-                                        return ItemStack.EMPTY;
+                                        if (!itemStack1.isEmpty()) {
+                                            if (itemStack1.getItem() == ItemList.SHULKER_ESSENCE) {
+                                                compoundnbt.putInt("scaredtp", 1);
+                                                itemStack2.setTag(compoundnbt);
+                                                return itemStack2;
+                                            }
+                                        } else {
+                                            return ItemStack.EMPTY;
+                                        }
                                     }
                                 }
                             }

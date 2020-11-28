@@ -7,6 +7,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -14,9 +15,12 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
@@ -150,5 +154,41 @@ public class NBTReader {
             }
         }
     }
-}
+    @SubscribeEvent
+    public static void scaredTp(TickEvent.PlayerTickEvent event) {
+        World world = event.player.getEntityWorld();
+        PlayerEntity player = event.player;
+        ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.HEAD);
+        if (stack.hasTag()) {
+            if (stack.getTag().getInt("scaredtp") >= 1 && player.getHealth() <= 4) {
+                if (!world.isRemote) {
+                    double d0 = player.getPosX();
+                    double d1 = player.getPosY();
+                    double d2 = player.getPosZ();
+
+                    for(int i = 0; i < 16; ++i) {
+                        double d3 = player.getPosX() + (player.getRNG().nextDouble() - 0.5D) * 16.0D;
+                        double d4 = MathHelper.clamp(player.getPosY() + (double)(player.getRNG().nextInt(16) - 8), 0.0D, (double)(world.func_234938_ad_() - 1));
+                        double d5 = player.getPosZ() + (player.getRNG().nextDouble() - 0.5D) * 16.0D;
+                        if (player.isPassenger()) {
+                            player.stopRiding();
+                        }
+
+                        if (player.attemptTeleport(d3, d4, d5, true)) {
+                            SoundEvent soundevent = SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
+                            world.playSound((PlayerEntity)null, d0, d1, d2, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                            player.playSound(soundevent, 1.0F, 1.0F);
+                            break;
+                        }
+                    }
+
+                    if (player instanceof PlayerEntity) {
+                        ((PlayerEntity)player).getCooldownTracker().setCooldown(stack.getItem(), 20);
+                    }
+                }
+            }
+            }
+        }
+    }
+
 

@@ -1,0 +1,12 @@
+{
+  "type": "au:forging",
+  "base": {
+    "item": "minecraft:iron_boots"
+  },
+  "addition": {
+    "item": "minecraft:magma_cream"
+  },
+  "result": {
+    "item": "minecraft:iron_boots"
+  }
+}

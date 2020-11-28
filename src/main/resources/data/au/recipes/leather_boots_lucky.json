@@ -1,0 +1,12 @@
+{
+  "type": "au:forging",
+  "base": {
+    "item": "minecraft:leather_boots"
+  },
+  "addition": {
+    "item": "minecraft:rabbit_foot"
+  },
+  "result": {
+    "item": "minecraft:leather_boots"
+  }
+}

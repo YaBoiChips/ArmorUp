@@ -23,7 +23,8 @@ public class ItemRegistry {
                 ItemList.SOUL_FIRE_ESSENCE = new Item(new Item.Properties().group(ArmorUp.AUTAB)).setRegistryName("soul_fire_essence"),
                 ItemList.SHROOMLIGHT_ESSENCE = new Item(new Item.Properties().group(ArmorUp.AUTAB)).setRegistryName("shroomlight_essence"),
                 ItemList.FROST_ESSENCE = new Item(new Item.Properties().group(ArmorUp.AUTAB)).setRegistryName("frost_essence"),
-                ItemList.ENDER_ESSENCE = new Item(new Item.Properties().group(ArmorUp.AUTAB)).setRegistryName("ender_essence")
+                ItemList.ENDER_ESSENCE = new Item(new Item.Properties().group(ArmorUp.AUTAB)).setRegistryName("ender_essence"),
+                ItemList.SHULKER_ESSENCE = new Item(new Item.Properties().group(ArmorUp.AUTAB)).setRegistryName("shulker_essence")
         );
     }
 }

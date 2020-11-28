@@ -1,0 +1,12 @@
+{
+  "type": "au:forging",
+  "base": {
+    "item": "minecraft:golden_boots"
+  },
+  "addition": {
+    "item": "minecraft:ghast_tear"
+  },
+  "result": {
+    "item": "minecraft:golden_boots"
+  }
+}
