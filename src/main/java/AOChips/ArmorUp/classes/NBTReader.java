@@ -156,7 +156,7 @@ public class NBTReader {
             if (stack.getTag().getInt("darksee") >= 1) {
                 if (i >= 1) {
                     System.out.println("pog");
-                    player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 10, 0, false, false));
+                    player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 50, 0, false, false));
                 }
             }
         }
