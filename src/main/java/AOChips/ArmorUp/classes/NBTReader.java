@@ -87,8 +87,8 @@ public class NBTReader {
                 if (stack.getTag().getInt("frozen") >= 1 && player.getHealth() <= 4) {
                     player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 200, 250, false, false));
                     player.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 200, 13, false, false));
-                    player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 50, 2, false, false));
-                    player.getCooldownTracker().setCooldown(stack.getItem(), 20000);
+                    player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 200, 4, false, false));
+                    player.getCooldownTracker().setCooldown(stack.getItem(), 2400);
                 }
             }
         }
@@ -153,8 +153,8 @@ public class NBTReader {
         BlockPos pos = event.player.getPosition();
         int i = world.getLight(pos);
         if (stack.hasTag()) {
-            if (stack.getTag().getInt("darksee") >= 1) {
-                if (i >= 1) {
+            if (stack.getTag().getInt("darksee") <= 1) {
+                if (i <= 1) {
                     System.out.println("pog");
                     player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 50, 0, false, false));
                 }
