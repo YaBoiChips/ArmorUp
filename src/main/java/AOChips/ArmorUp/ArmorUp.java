@@ -4,6 +4,7 @@ package AOChips.ArmorUp;
 import AOChips.ArmorUp.classes.ModContainerTypes;
 import AOChips.ArmorUp.classes.ModRecipeSerializers;
 import AOChips.ArmorUp.classes.ModRecipeTypes;
+import AOChips.ArmorUp.client.ToolTipEvent;
 import AOChips.ArmorUp.client.gui.ForgingTableScreen;
 import AOChips.ArmorUp.lists.ItemList;
 import AOChips.ArmorUp.registries.ItemRegistry;
@@ -16,6 +17,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -38,6 +40,7 @@ public class ArmorUp {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
         ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
         modEventBus.register(new ModRecipeSerializers());
+        MinecraftForge.EVENT_BUS.register(new ToolTipEvent());
     }
 
     public static void register() {
