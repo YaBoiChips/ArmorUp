@@ -3,20 +3,16 @@ package AOChips.ArmorUp;
 
 import AOChips.ArmorUp.classes.ModContainerTypes;
 import AOChips.ArmorUp.classes.ModRecipeSerializers;
-import AOChips.ArmorUp.classes.ModRecipeTypes;
 import AOChips.ArmorUp.client.ToolTipEvent;
 import AOChips.ArmorUp.client.gui.ForgingTableScreen;
-import AOChips.ArmorUp.lists.ItemList;
-import AOChips.ArmorUp.registries.ItemRegistry;
+import AOChips.ArmorUp.client.gui.PocketScreen;
+import AOChips.ArmorUp.client.keybind.KeyBindingList;
+import AOChips.ArmorUp.containers.PocketContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -25,8 +21,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import javax.annotation.Nullable;
 
 @Mod("au")
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -41,6 +35,8 @@ public class ArmorUp {
         ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
         modEventBus.register(new ModRecipeSerializers());
         MinecraftForge.EVENT_BUS.register(new ToolTipEvent());
+        MinecraftForge.EVENT_BUS.register(new KeyBindingList());
+
     }
 
     public static void register() {
@@ -55,6 +51,8 @@ public class ArmorUp {
     private void clientSetup(FMLClientSetupEvent e) {
         LOGGER.debug("AU: Client Setup event starting...");
         ScreenManager.registerFactory(ModContainerTypes.FORGING_CONTAINER.get(), ForgingTableScreen::new);
+        ScreenManager.registerFactory(ModContainerTypes.POCKET_CONTAINER.get(), PocketScreen::new);
+        KeyBindingList.register();
     }
     public static final ItemGroup AUTAB = new ItemGroup("auTab") {
         @Override

@@ -45,7 +45,7 @@ public class NBTReader {
         List<MobEntity> list = world.getEntitiesWithinAABB(MobEntity.class, axisalignedbb);
         for (MobEntity mobEntity : list)
             if (stack.hasTag()) {
-                if (stack.getTag().getInt("glow") >= 1) {
+                if (stack.getTag().getInt("Glowing") >= 1) {
                     mobEntity.addPotionEffect(new EffectInstance(Effects.GLOWING, 10, 0, false, false));
                 }
             }
@@ -56,7 +56,7 @@ public class NBTReader {
         PlayerEntity player = event.player;
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
-            if (stack.getTag().getInt("luck") >= 1) {
+            if (stack.getTag().getInt("Lucky") >= 1) {
                 player.addPotionEffect(new EffectInstance(Effects.LUCK, 100, 0, false, false));
             }
         }
@@ -69,7 +69,7 @@ public class NBTReader {
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
             if (!player.getCooldownTracker().hasCooldown(stack.getItem())) {
-                if (stack.getTag().getInt("scared") >= 1 && player.getHealth() <= 4) {
+                if (stack.getTag().getInt("Scared") >= 1 && player.getHealth() <= 4) {
                     player.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 500, 0, false, false));
                     player.getCooldownTracker().setCooldown(stack.getItem(), 20000);
                 }
@@ -84,7 +84,7 @@ public class NBTReader {
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.CHEST);
         if (stack.hasTag()) {
             if (!player.getCooldownTracker().hasCooldown(stack.getItem())) {
-                if (stack.getTag().getInt("frozen") >= 1 && player.getHealth() <= 4) {
+                if (stack.getTag().getInt("Frozen") >= 1 && player.getHealth() <= 4) {
                     player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 200, 250, false, false));
                     player.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 200, 13, false, false));
                     player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 200, 4, false, false));
@@ -103,7 +103,7 @@ public class NBTReader {
         Vector3d vec3d = event.player.getMotion();
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
-            if (stack.getTag().getInt("bouncy") >= 1) {
+            if (stack.getTag().getInt("Bouncy") >= 1) {
                 if (state.getBlock() != Blocks.GRASS && state.getBlock() != Blocks.WATER && state.getBlock() != Blocks.AIR && state.getBlock() != Blocks.TORCH && state.getBlock() != Blocks.CAVE_AIR && state.getBlock() != Blocks.VOID_AIR) {
                     if (!(player.isSneaking())) {
                         if (!(player.isSwimming())) {
@@ -122,7 +122,7 @@ public class NBTReader {
         {
             if (event.getEntity() instanceof PlayerEntity) {
                 if (stack.hasTag()) {
-                    if (stack.getTag().getInt("bouncy") >= 1) {
+                    if (stack.getTag().getInt("Bouncy") >= 1) {
                         if (!entity.isSneaking())
                             event.setDistance(0f);
                     }
@@ -137,7 +137,7 @@ public class NBTReader {
         ItemStack stack = entity.getItemStackFromSlot(EquipmentSlotType.FEET);
         DamageSource source = event.getSource();
         if (stack.hasTag()) {
-            if (stack.getTag().getInt("unhot") >= 1) {
+            if (stack.getTag().getInt("Magma Walker") >= 1) {
                 if (source == DamageSource.HOT_FLOOR) {
                     event.setAmount(0.0f);
                 }
@@ -153,7 +153,7 @@ public class NBTReader {
         BlockPos pos = event.player.getPosition();
         int i = world.getLight(pos);
         if (stack.hasTag()) {
-            if (stack.getTag().getInt("darksee") <= 1) {
+            if (stack.getTag().getInt("Sight") <= 1) {
                 if (i <= 1) {
                     System.out.println("pog");
                     player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 50, 0, false, false));
@@ -171,7 +171,7 @@ public class NBTReader {
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
             if (!player.getCooldownTracker().hasCooldown(stack.getItem())) {
-                if (stack.getTag().getInt("scaredtp") >= 1 && player.getHealth() <= 4) {
+                if (stack.getTag().getInt("Avoid") >= 1 && player.getHealth() <= 4) {
                     if (!world.isRemote) {
                         double d0 = player.getPosX() + (player.getRNG().nextDouble() - 0.5D) * 16.0D;
                         double d1 = player.getPosY();

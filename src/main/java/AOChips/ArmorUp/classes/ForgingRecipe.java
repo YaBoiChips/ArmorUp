@@ -42,54 +42,61 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
             CompoundNBT compoundnbt = itemStack2.getTag().copy();
             if (!itemStack1.isEmpty()) {
                 if (itemStack1.getItem() == ItemList.SHROOMLIGHT_ESSENCE) {
-                    compoundnbt.putInt("glow", 1);
+                    compoundnbt.putInt("Glowing", 1);
                     itemStack2.setTag(compoundnbt);
                     return itemStack2;
                 }
                 if (!itemStack1.isEmpty()) {
                     if (itemStack1.getItem() == Items.RABBIT_FOOT) {
-                        compoundnbt.putInt("luck", 1);
+                        compoundnbt.putInt("Lucky", 1);
                         itemStack2.setTag(compoundnbt);
                         return itemStack2;
                     }
                     if (!itemStack1.isEmpty()) {
                         if (itemStack1.getItem() == Items.GHAST_TEAR) {
-                            compoundnbt.putInt("scared", 1);
+                            compoundnbt.putInt("Scared", 1);
                             itemStack2.setTag(compoundnbt);
                             return itemStack2;
                         }
                         if (!itemStack1.isEmpty()) {
                             if (itemStack1.getItem() == ItemList.FROST_ESSENCE) {
-                                compoundnbt.putInt("frozen", 1);
+                                compoundnbt.putInt("Frozen", 1);
                                 itemStack2.setTag(compoundnbt);
                                 return itemStack2;
                             }
                             if (!itemStack1.isEmpty()) {
                                 if (itemStack1.getItem() == Items.SLIME_BALL) {
-                                    compoundnbt.putInt("bouncy", 1);
+                                    compoundnbt.putInt("Bouncy", 1);
                                     itemStack2.setTag(compoundnbt);
                                     return itemStack2;
                                 }
                                 if (!itemStack1.isEmpty()) {
                                     if (itemStack1.getItem() == Items.MAGMA_CREAM) {
-                                        compoundnbt.putInt("unhot", 1);
+                                        compoundnbt.putInt("Magma Walker", 1);
                                         itemStack2.setTag(compoundnbt);
                                         return itemStack2;
                                     }
                                     if (!itemStack1.isEmpty()) {
                                         if (itemStack1.getItem() == ItemList.ENDER_ESSENCE) {
-                                            compoundnbt.putInt("darksee", 1);
+                                            compoundnbt.putInt("Sight", 1);
                                             itemStack2.setTag(compoundnbt);
                                             return itemStack2;
                                         }
                                         if (!itemStack1.isEmpty()) {
                                             if (itemStack1.getItem() == ItemList.SHULKER_ESSENCE) {
-                                                compoundnbt.putInt("scaredtp", 1);
+                                                compoundnbt.putInt("Avoid", 1);
                                                 itemStack2.setTag(compoundnbt);
                                                 return itemStack2;
                                             }
-                                        } else {
-                                            return ItemStack.EMPTY;
+                                            if (!itemStack1.isEmpty()) {
+                                                if (itemStack1.getItem() == Items.SHULKER_BOX) {
+                                                    compoundnbt.putInt("Pockets", 1);
+                                                    itemStack2.setTag(compoundnbt);
+                                                    return itemStack2;
+                                                }
+                                            } else {
+                                                return ItemStack.EMPTY;
+                                            }
                                         }
                                     }
                                 }
@@ -99,7 +106,6 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
                 }
             }
         }
-
 
         return this.result;
     }
