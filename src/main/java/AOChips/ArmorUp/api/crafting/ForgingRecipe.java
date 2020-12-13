@@ -1,6 +1,7 @@
-package AOChips.ArmorUp.classes;
+package AOChips.ArmorUp.api.crafting;
 
-import AOChips.ArmorUp.api.crafting.IForgingRecipe;
+import AOChips.ArmorUp.registries.ModRecipeSerializers;
+import AOChips.ArmorUp.registries.ModRecipeTypes;
 import AOChips.ArmorUp.lists.BlockList;
 import AOChips.ArmorUp.lists.ItemList;
 import com.google.gson.JsonObject;

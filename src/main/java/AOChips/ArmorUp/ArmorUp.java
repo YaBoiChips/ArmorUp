@@ -1,13 +1,12 @@
 package AOChips.ArmorUp;
 
 
-import AOChips.ArmorUp.classes.ModContainerTypes;
-import AOChips.ArmorUp.classes.ModRecipeSerializers;
-import AOChips.ArmorUp.client.ToolTipEvent;
+import AOChips.ArmorUp.registries.ModContainerTypes;
+import AOChips.ArmorUp.registries.ModRecipeSerializers;
+import AOChips.ArmorUp.classes.ToolTipEvent;
 import AOChips.ArmorUp.client.gui.ForgingTableScreen;
 import AOChips.ArmorUp.client.gui.PocketScreen;
 import AOChips.ArmorUp.client.keybind.KeyBindingList;
-import AOChips.ArmorUp.containers.PocketContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.ItemGroup;

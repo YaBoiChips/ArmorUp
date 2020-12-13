@@ -29,7 +29,7 @@ displayURL="http://example.com/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
-credits="Thanks to Caleb for making the math equasion in Corgi Taco's Better Weather" #optional
+credits="Thanks to Wildcard for the Inventory things with Pockets, " #optional
 # A text field displayed in the mod UI
 authors="AOCAWOL & YaBoiChips" #optional
 # The description text for the mod (multi line!) (#mandatory)

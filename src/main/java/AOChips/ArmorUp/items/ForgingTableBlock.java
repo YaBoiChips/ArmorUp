@@ -1,4 +1,4 @@
-package AOChips.ArmorUp.classes;
+package AOChips.ArmorUp.items;
 
 import AOChips.ArmorUp.containers.ForgingTableContainer;
 import net.minecraft.block.*;

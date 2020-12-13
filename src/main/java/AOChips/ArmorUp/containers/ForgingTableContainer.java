@@ -1,8 +1,8 @@
 package AOChips.ArmorUp.containers;
 
-import AOChips.ArmorUp.classes.ForgingRecipe;
-import AOChips.ArmorUp.classes.ModContainerTypes;
-import AOChips.ArmorUp.classes.ModRecipeTypes;
+import AOChips.ArmorUp.api.crafting.ForgingRecipe;
+import AOChips.ArmorUp.registries.ModContainerTypes;
+import AOChips.ArmorUp.registries.ModRecipeTypes;
 import AOChips.ArmorUp.lists.BlockList;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

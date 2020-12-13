@@ -1,12 +1,13 @@
 package AOChips.ArmorUp.client.keybind;
 
 import AOChips.ArmorUp.ArmorUp;
+import AOChips.ArmorUp.api.inventories.PocketInventory;
 import AOChips.ArmorUp.containers.PocketContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,12 +20,16 @@ public class KeyBindHandler {
     public static void doPockets(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
         BlockPos pos = player.getPosition();
-        if(player instanceof ServerPlayerEntity){
-        if (KeyBindingList.POCKET_KEY.isKeyDown()) {
-            System.out.println("pog");
-            player.openContainer(new SimpleNamedContainerProvider((id, playerInventory, entity) -> new PocketContainer(id, player.inventory, new Inventory()), player.getItemStackFromSlot(EquipmentSlotType.LEGS).getDisplayName()));
+        ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.LEGS);
+        if (player instanceof ServerPlayerEntity) {
+            if (stack.hasTag()) {
+                if (stack.getTag().getInt("Pockets") >= 1) {
+                    if (KeyBindingList.POCKET_KEY.isPressed()) {
+                        player.openContainer(new SimpleNamedContainerProvider((id, playerInventory, entity) -> new PocketContainer(id, player.inventory, new PocketInventory()), player.getItemStackFromSlot(EquipmentSlotType.LEGS).getDisplayName()));
 
-        }
+                    }
+                }
+            }
         }
     }
 }

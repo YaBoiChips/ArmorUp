@@ -155,7 +155,6 @@ public class NBTReader {
         if (stack.hasTag()) {
             if (stack.getTag().getInt("Sight") <= 1) {
                 if (i <= 1) {
-                    System.out.println("pog");
                     player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 50, 0, false, false));
                 }
             }

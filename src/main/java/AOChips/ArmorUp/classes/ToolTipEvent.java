@@ -1,4 +1,4 @@
-package AOChips.ArmorUp.client;
+package AOChips.ArmorUp.classes;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,7 @@ public class ToolTipEvent {
         ItemStack stack = event.getItemStack();
         if (stack.hasTag()) {
             ITextComponent toolTip = (stack.getTag().toFormattedComponent());
-            if (stack.getTag().getInt("glow") >= 1) {
+            if (stack.getTag().getInt("Glowing") >= 1) {
                 if (!event.getToolTip().contains(toolTip)) {
                     event.getToolTip().add(toolTip);
 
@@ -27,7 +27,7 @@ public class ToolTipEvent {
         ItemStack stack = event.getItemStack();
         if (stack.hasTag()) {
             ITextComponent toolTip = (stack.getTag().toFormattedComponent());
-            if (stack.getTag().getInt("luck") >= 1) {
+            if (stack.getTag().getInt("Lucky") >= 1) {
                 if (!event.getToolTip().contains(toolTip)) {
                     event.getToolTip().add(toolTip);
 
@@ -40,7 +40,7 @@ public class ToolTipEvent {
         ItemStack stack = event.getItemStack();
         if (stack.hasTag()) {
             ITextComponent toolTip = (stack.getTag().toFormattedComponent());
-            if (stack.getTag().getInt("scared") >= 1) {
+            if (stack.getTag().getInt("Scared") >= 1) {
                 if (!event.getToolTip().contains(toolTip)) {
                     event.getToolTip().add(toolTip);
 
@@ -53,7 +53,7 @@ public class ToolTipEvent {
         ItemStack stack = event.getItemStack();
         if (stack.hasTag()) {
             ITextComponent toolTip = (stack.getTag().toFormattedComponent());
-            if (stack.getTag().getInt("frozen") >= 1) {
+            if (stack.getTag().getInt("Frozen") >= 1) {
                 if (!event.getToolTip().contains(toolTip)) {
                     event.getToolTip().add(toolTip);
 
@@ -66,7 +66,7 @@ public class ToolTipEvent {
         ItemStack stack = event.getItemStack();
         if (stack.hasTag()) {
             ITextComponent toolTip = (stack.getTag().toFormattedComponent());
-            if (stack.getTag().getInt("bouncy") >= 1) {
+            if (stack.getTag().getInt("Bouncy") >= 1) {
                 if (!event.getToolTip().contains(toolTip)) {
                     event.getToolTip().add(toolTip);
 
@@ -79,7 +79,7 @@ public class ToolTipEvent {
         ItemStack stack = event.getItemStack();
         if (stack.hasTag()) {
             ITextComponent toolTip = (stack.getTag().toFormattedComponent());
-            if (stack.getTag().getInt("unhot") >= 1) {
+            if (stack.getTag().getInt("Magma Walker") >= 1) {
                 if (!event.getToolTip().contains(toolTip)) {
                     event.getToolTip().add(toolTip);
 
@@ -92,7 +92,7 @@ public class ToolTipEvent {
         ItemStack stack = event.getItemStack();
         if (stack.hasTag()) {
             ITextComponent toolTip = (stack.getTag().toFormattedComponent());
-            if (stack.getTag().getInt("darksee") >= 1) {
+            if (stack.getTag().getInt("Sight") >= 1) {
                 if (!event.getToolTip().contains(toolTip)) {
                     event.getToolTip().add(toolTip);
 
@@ -105,10 +105,22 @@ public class ToolTipEvent {
         ItemStack stack = event.getItemStack();
         if (stack.hasTag()) {
             ITextComponent toolTip = (stack.getTag().toFormattedComponent());
-            if (stack.getTag().getInt("scaredtp") >= 1) {
+            if (stack.getTag().getInt("Avoid") >= 1) {
                 if (!event.getToolTip().contains(toolTip)) {
                     event.getToolTip().add(toolTip);
 
+                }
+            }
+        }
+    }
+    @SubscribeEvent
+    public void pocketToolTip(ItemTooltipEvent event) {
+        ItemStack stack = event.getItemStack();
+        if (stack.hasTag()) {
+            ITextComponent toolTip = (stack.getTag().toFormattedComponent());
+            if (stack.getTag().getInt("Pockets") >= 1) {
+                if (!event.getToolTip().contains(toolTip)) {
+                    event.getToolTip().add(toolTip);
                 }
             }
         }

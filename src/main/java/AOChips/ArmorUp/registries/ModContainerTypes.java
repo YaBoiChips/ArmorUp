@@ -1,4 +1,4 @@
-package AOChips.ArmorUp.classes;
+package AOChips.ArmorUp.registries;
 
 import AOChips.ArmorUp.ArmorUp;
 import AOChips.ArmorUp.containers.ForgingTableContainer;
@@ -15,8 +15,8 @@ public class ModContainerTypes {
     public static final RegistryObject<ContainerType<ForgingTableContainer>> FORGING_CONTAINER = CONTAINER_TYPES
             .register("forge_container", () -> IForgeContainerType.create(ForgingTableContainer::new));
 
-    public static final RegistryObject<ContainerType<PocketContainer>> POCKET_CONTAINER = CONTAINER_TYPES.register("pocket_container",
-            () -> new ContainerType<>((PocketContainer::new)));
+    public static final RegistryObject<ContainerType<PocketContainer>> POCKET_CONTAINER = CONTAINER_TYPES
+            .register("pocket_container", () -> new ContainerType<>(PocketContainer::new));
 
 
     }

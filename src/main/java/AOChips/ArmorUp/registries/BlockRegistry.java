@@ -1,20 +1,14 @@
 package AOChips.ArmorUp.registries;
 
-import AOChips.ArmorUp.ArmorUp;
-import AOChips.ArmorUp.classes.ForgingTableBlock;
+import AOChips.ArmorUp.items.ForgingTableBlock;
 import AOChips.ArmorUp.lists.BlockList;
-import AOChips.ArmorUp.lists.ItemList;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.ToIntFunction;
 
