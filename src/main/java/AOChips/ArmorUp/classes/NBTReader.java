@@ -69,7 +69,7 @@ public class NBTReader {
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
             if (!player.getCooldownTracker().hasCooldown(stack.getItem())) {
-                if (stack.getTag().getInt("Scared") >= 1 && player.getHealth() <= 4) {
+                if (stack.getTag().getInt("Scared") >= 1 && player.getHealth() >= 4) {
                     player.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 500, 0, false, false));
                     player.getCooldownTracker().setCooldown(stack.getItem(), 20000);
                 }
@@ -84,7 +84,7 @@ public class NBTReader {
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.CHEST);
         if (stack.hasTag()) {
             if (!player.getCooldownTracker().hasCooldown(stack.getItem())) {
-                if (stack.getTag().getInt("Frozen") >= 1 && player.getHealth() <= 4) {
+                if (stack.getTag().getInt("Frozen") >= 1 && player.getHealth() >= 4) {
                     player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 200, 250, false, false));
                     player.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 200, 13, false, false));
                     player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 200, 4, false, false));
@@ -97,17 +97,24 @@ public class NBTReader {
     @SubscribeEvent
     public static void testBounce(TickEvent.PlayerTickEvent event) {
         World world = event.player.getEntityWorld();
+        Entity entity = event.player.getEntity();
         PlayerEntity player = event.player;
-        BlockPos pos = new BlockPos(player.getPosX(), player.getPosY() - 0.10, player.getPosZ());
+        BlockPos pos = new BlockPos(player.getPosX(), player.getPosY() - 0.02, player.getPosZ());
         BlockState state = world.getBlockState(pos);
         Vector3d vec3d = event.player.getMotion();
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
             if (stack.getTag().getInt("Bouncy") >= 1) {
-                if (state.getBlock() != Blocks.GRASS && state.getBlock() != Blocks.WATER && state.getBlock() != Blocks.AIR && state.getBlock() != Blocks.TORCH && state.getBlock() != Blocks.CAVE_AIR && state.getBlock() != Blocks.VOID_AIR) {
+                if (state.getBlock() != Blocks.GRASS && state.getBlock() != Blocks.WATER && state.getBlock() != Blocks.AIR
+                        && state.getBlock() != Blocks.TORCH && state.getBlock() != Blocks.CAVE_AIR
+                        && state.getBlock() != Blocks.VOID_AIR && state.getBlock() != Blocks.SNOW) {
                     if (!(player.isSneaking())) {
                         if (!(player.isSwimming())) {
-                            event.player.setMotion(vec3d.x, 0.9f, vec3d.z);
+                            Vector3d vector3d = entity.getMotion();
+                            if (vector3d.y < 0.0D) {
+                                double d0 = entity instanceof PlayerEntity ? 1.0D : 0.8D;
+                                entity.setMotion(vector3d.x, -vector3d.y * d0, vector3d.z);
+                            }
                         }
                     }
                 }
@@ -170,7 +177,7 @@ public class NBTReader {
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
             if (!player.getCooldownTracker().hasCooldown(stack.getItem())) {
-                if (stack.getTag().getInt("Avoid") >= 1 && player.getHealth() <= 4) {
+                if (stack.getTag().getInt("Avoid") >= 1 && player.getHealth() >= 4) {
                     if (!world.isRemote) {
                         double d0 = player.getPosX() + (player.getRNG().nextDouble() - 0.5D) * 16.0D;
                         double d1 = player.getPosY();

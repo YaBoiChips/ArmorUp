@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 
 @Mod.EventBusSubscriber(modid = ArmorUp.AU, bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -25,7 +26,7 @@ public class KeyBindHandler {
             if (stack.hasTag()) {
                 if (stack.getTag().getInt("Pockets") >= 1) {
                     if (KeyBindingList.POCKET_KEY.isPressed()) {
-                        player.openContainer(new SimpleNamedContainerProvider((id, playerInventory, entity) -> new PocketContainer(id, player.inventory, new PocketInventory()), player.getItemStackFromSlot(EquipmentSlotType.LEGS).getDisplayName()));
+                        NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, playerInventory, entity) -> new PocketContainer(id, player.inventory, new PocketInventory()), player.getItemStackFromSlot(EquipmentSlotType.LEGS).getDisplayName()));
 
                     }
                 }
