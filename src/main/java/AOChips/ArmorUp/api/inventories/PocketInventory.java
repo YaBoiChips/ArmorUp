@@ -28,7 +28,7 @@ public class PocketInventory extends Inventory {
         if (player instanceof ServerPlayerEntity) {
             ItemStack pocket = player.getItemStackFromSlot(EquipmentSlotType.LEGS);
             if (!pocket.isEmpty()) {
-                CompoundNBT compoundNBT = pocket.getTag().copy();
+                CompoundNBT compoundNBT = pocket.getTag();
                 if (compoundNBT != null) {
                     if (compoundNBT.contains("Items", Constants.NBT.TAG_LIST)) {
                         InventoryHelper.loadAllItems(compoundNBT.getList("Items", Constants.NBT.TAG_LIST), this);
