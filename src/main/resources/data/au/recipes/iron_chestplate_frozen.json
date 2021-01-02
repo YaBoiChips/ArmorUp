@@ -1,0 +1,12 @@
+{
+  "type": "au:forging",
+  "base": {
+    "item": "minecraft:iron_chestplate"
+  },
+  "addition": {
+    "item": "au:frost_essence"
+  },
+  "result": {
+    "item": "minecraft:iron_chestplate"
+  }
+}

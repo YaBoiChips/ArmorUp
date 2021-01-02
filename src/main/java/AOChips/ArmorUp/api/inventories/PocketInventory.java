@@ -1,22 +1,30 @@
 package AOChips.ArmorUp.api.inventories;
 
+
+import AOChips.ArmorUp.containers.PocketContainer;
 import AOChips.ArmorUp.util.InventoryHelper;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
-import net.minecraft.world.World;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.util.Constants;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 public class PocketInventory extends Inventory {
+
 
     public PocketInventory() {
         super(1);
     }
+
+
 
     @Override
     public boolean isUsableByPlayer(PlayerEntity player) {
@@ -26,34 +34,34 @@ public class PocketInventory extends Inventory {
     @Override
     public void openInventory(PlayerEntity player) {
         if (player instanceof ServerPlayerEntity) {
-            ItemStack pocket = player.getItemStackFromSlot(EquipmentSlotType.LEGS);
+            this.clear();
+            ItemStack pocket = InventoryHelper.getPocketStack(player);
             if (!pocket.isEmpty()) {
-                CompoundNBT compoundNBT = pocket.getTag();
-                if (compoundNBT != null) {
-                    if (compoundNBT.contains("Items", Constants.NBT.TAG_LIST)) {
-                        InventoryHelper.loadAllItems(compoundNBT.getList("Items", Constants.NBT.TAG_LIST), this);
+                CompoundNBT compound = pocket.getTag();
+                if (compound != null) {
+                    if (compound.contains("Items", Constants.NBT.TAG_LIST)) {
+                        InventoryHelper.loadAllItems(compound.getList("Items", Constants.NBT.TAG_COMPOUND), this);
                     }
                 }
             }
         }
     }
 
-
     @Override
-    public void closeInventory(PlayerEntity player) {
-        if (player instanceof ServerPlayerEntity) {
-            ItemStack pocket = player.getItemStackFromSlot(EquipmentSlotType.LEGS);
-            if (!pocket.isEmpty()) {
-                CompoundNBT compoundNBT = pocket.getTag();
-                if (compoundNBT == null) {
-                    compoundNBT = new CompoundNBT();
-                }
-                ListNBT listNBT = new ListNBT();
-                InventoryHelper.saveAllItems(listNBT, this);
-                compoundNBT.put("Items", listNBT);
-                pocket.setTag(compoundNBT);
+    public void closeInventory(PlayerEntity player)
+    {
+        ItemStack pocket = InventoryHelper.getPocketStack(player);
+            CompoundNBT compound = pocket.getTag();
+            if(compound == null)
+            {
+                compound = new CompoundNBT();
             }
+            ListNBT list = new ListNBT();
+            InventoryHelper.saveAllItems(list, this);
+            compound.put("Items", list);
+            pocket.setTag(compound);
         }
     }
-}
+
+
 

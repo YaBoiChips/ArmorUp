@@ -19,8 +19,8 @@ public class PocketContainer extends Container {
 
     public PocketContainer(int id, PlayerInventory playerInventory, IInventory pocketInvIn) {
         super(ModContainerTypes.POCKET_CONTAINER.get(), id);
-        assertInventorySize(pocketInvIn, 1);
         this.pocketInv = pocketInvIn;
+        pocketInvIn.openInventory(playerInventory.player);
 
 
         // Main Inventory
@@ -38,6 +38,8 @@ public class PocketContainer extends Container {
         for (int column = 0; column < 9; column++) {
             this.addSlot(new Slot(playerInventory, column, startX + (column * slotSizePlus2), 142));
         }
+
+        // Pocket
         for (int x = 0; x < 1; x++) {
             this.addSlot(new PocketSlot(pocketInv, x, 81, 36));
         }
@@ -45,7 +47,7 @@ public class PocketContainer extends Container {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return true;
+        return this.pocketInv.isUsableByPlayer(playerIn);
     }
 
     @Override

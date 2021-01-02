@@ -125,4 +125,16 @@ public class ToolTipEvent {
             }
         }
     }
+    @SubscribeEvent
+    public void lavaToolTip(ItemTooltipEvent event){
+        ItemStack stack = event.getItemStack();
+        if (stack.hasTag()) {
+            ITextComponent toolTip = (stack.getTag().toFormattedComponent());
+            if (stack.getTag().getInt("Lava Walker") >= 1) {
+                if (!event.getToolTip().contains(toolTip)) {
+                    event.getToolTip().add(toolTip);
+                }
+            }
+        }
+    }
 }

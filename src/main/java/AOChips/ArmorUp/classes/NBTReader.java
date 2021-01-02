@@ -64,7 +64,6 @@ public class NBTReader {
 
     @SubscribeEvent
     public static void getScared(TickEvent.PlayerTickEvent event) {
-        World world = event.player.getEntityWorld();
         PlayerEntity player = event.player;
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
@@ -79,7 +78,6 @@ public class NBTReader {
 
     @SubscribeEvent
     public static void getFrozen(TickEvent.PlayerTickEvent event) {
-        World world = event.player.getEntityWorld();
         PlayerEntity player = event.player;
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.CHEST);
         if (stack.hasTag()) {
@@ -101,7 +99,6 @@ public class NBTReader {
         PlayerEntity player = event.player;
         BlockPos pos = new BlockPos(player.getPosX(), player.getPosY() - 0.02, player.getPosZ());
         BlockState state = world.getBlockState(pos);
-        Vector3d vec3d = event.player.getMotion();
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
             if (stack.getTag().getInt("Bouncy") >= 1) {
@@ -111,16 +108,14 @@ public class NBTReader {
                     if (!(player.isSneaking())) {
                         if (!(player.isSwimming())) {
                             Vector3d vector3d = entity.getMotion();
-                            if (vector3d.y < 0.0D) {
-                                double d0 = entity instanceof PlayerEntity ? 1.0D : 0.8D;
-                                entity.setMotion(vector3d.x, -vector3d.y * d0, vector3d.z);
+                                entity.setMotion(vector3d.x, 1.2, vector3d.z);
                             }
                         }
                     }
                 }
             }
         }
-    }
+
 
     @SubscribeEvent
     public static void fallReducer(LivingFallEvent event) {
@@ -170,9 +165,7 @@ public class NBTReader {
 
     @SubscribeEvent
     public static void scaredTp(TickEvent.PlayerTickEvent event) {
-        //DOESN'T WORK YET
         World world = event.player.getEntityWorld();
-        LivingEntity entity = event.player;
         PlayerEntity player = event.player;
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
@@ -191,6 +184,22 @@ public class NBTReader {
             }
         }
     }
+    @SubscribeEvent
+    public static void magmaWalker(TickEvent.PlayerTickEvent event) {
+        PlayerEntity player = event.player;
+        World world = player.getEntityWorld();
+        BlockState blockstate = Blocks.OBSIDIAN.getDefaultState();
+        BlockPos pos = new BlockPos(player.getPosX(), player.getPosY()-1, player.getPosZ());
+        BlockState blockstate1 = world.getBlockState(pos);
+        ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
+        if (stack.hasTag()) {
+            if (stack.getTag().getInt("Lava Walker") <=1 ) {
+                if (blockstate1 == Blocks.LAVA.getDefaultState())
+                world.setBlockState(pos, blockstate);
+            }
+        }
+    }
+
 }
 
 

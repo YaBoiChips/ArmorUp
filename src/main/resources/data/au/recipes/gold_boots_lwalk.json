@@ -1,0 +1,12 @@
+{
+  "type": "au:forging",
+  "base": {
+    "item": "minecraft:gold_boots"
+  },
+  "addition": {
+    "item": "minecraft:lava_bucket"
+  },
+  "result": {
+    "item": "minecraft:gold_boots"
+  }
+}

@@ -20,7 +20,6 @@ public class KeyBindHandler {
     @SubscribeEvent
     public static void doPockets(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
-        BlockPos pos = player.getPosition();
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.LEGS);
         if (player instanceof ServerPlayerEntity) {
             if (stack.hasTag()) {

@@ -4,6 +4,7 @@ import AOChips.ArmorUp.lists.ItemList;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
@@ -22,20 +23,31 @@ public class EssenceBottle extends Item {
         PlayerEntity player = context.getPlayer();
         World world = context.getWorld();
         BlockPos blockpos = context.getPos();
+        ItemStack stack = ItemList.ESSENCE_BOTTLE.getDefaultInstance();
         BlockState blockstate = world.getBlockState(blockpos);
         if(blockstate.getBlock() == Blocks.SOUL_FIRE) {
-            player.inventory.removeStackFromSlot(player.inventory.getSlotFor(ItemList.ESSENCE_BOTTLE.getDefaultInstance()));
+            player.getItemStackFromSlot(EquipmentSlotType.MAINHAND).shrink(1);
             player.inventory.addItemStackToInventory(new ItemStack(ItemList.SOUL_FIRE_ESSENCE));
             world.destroyBlock(blockpos, false);
         }
         if(blockstate.getBlock() == Blocks.SHROOMLIGHT) {
-            player.inventory.removeStackFromSlot(player.inventory.getSlotFor(ItemList.ESSENCE_BOTTLE.getDefaultInstance()));
+            player.getItemStackFromSlot(EquipmentSlotType.MAINHAND).shrink(1);
             player.inventory.addItemStackToInventory(new ItemStack(ItemList.SHROOMLIGHT_ESSENCE));
             world.destroyBlock(blockpos, false);
         }
         if(blockstate.getBlock() == Blocks.BLUE_ICE) {
-            player.inventory.removeStackFromSlot(player.inventory.getSlotFor(ItemList.ESSENCE_BOTTLE.getDefaultInstance()));
+            player.getItemStackFromSlot(EquipmentSlotType.MAINHAND).shrink(1);
             player.inventory.addItemStackToInventory(new ItemStack(ItemList.FROST_ESSENCE));
+            world.destroyBlock(blockpos, false);
+        }
+        if(blockstate.getBlock() == Blocks.CHORUS_FLOWER) {
+            player.getItemStackFromSlot(EquipmentSlotType.MAINHAND).shrink(1);
+            player.inventory.addItemStackToInventory(new ItemStack(ItemList.ENDER_ESSENCE));
+            world.destroyBlock(blockpos, false);
+        }
+        if(blockstate.getBlock() == Blocks.SHULKER_BOX) {
+            player.getItemStackFromSlot(EquipmentSlotType.MAINHAND).shrink(1);
+            player.inventory.addItemStackToInventory(new ItemStack(ItemList.SHULKER_ESSENCE));
             world.destroyBlock(blockpos, false);
         }
         return ActionResultType.CONSUME;

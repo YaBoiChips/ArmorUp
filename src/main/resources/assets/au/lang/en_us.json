@@ -1,3 +1,10 @@
 {
-  "container.forging": "Forging Table"
+  "container.forging": "Forging Table",
+  "block.au.forging_table": "Forging Table",
+  "item.au.essence_bottle": "Essence Bottle",
+  "item.au.soul_fire_essence": "Soul Fire Essence",
+  "item.au.shroomlight_essence": "Shroomlight Essence",
+  "item.au.frost_essence": "Frost Essence",
+  "item.au.ender_essence": "Ender Essence",
+  "item.au.shulker_essence": "Shulker Essence"
 }

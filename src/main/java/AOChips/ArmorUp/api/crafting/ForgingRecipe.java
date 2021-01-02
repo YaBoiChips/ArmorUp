@@ -5,6 +5,7 @@ import AOChips.ArmorUp.registries.ModRecipeTypes;
 import AOChips.ArmorUp.lists.BlockList;
 import AOChips.ArmorUp.lists.ItemList;
 import com.google.gson.JsonObject;
+import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -41,74 +42,88 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
             ItemStack itemStack1 = inv.getStackInSlot(1);
             ItemStack itemStack2 = this.result;
             CompoundNBT compoundnbt = itemStack2.getTag().copy();
-            if (!itemStack1.isEmpty()) {
-                if (itemStack1.getItem() == ItemList.SHROOMLIGHT_ESSENCE) {
-                    compoundnbt.putInt("Glowing", 1);
-                    itemStack2.setTag(compoundnbt);
-                    return itemStack2;
-                }
                 if (!itemStack1.isEmpty()) {
-                    if (itemStack1.getItem() == Items.RABBIT_FOOT) {
-                        compoundnbt.putInt("Lucky", 1);
+                    if (itemStack1.getItem() == ItemList.SHROOMLIGHT_ESSENCE) {
+                        compoundnbt.putInt("Glowing", 1);
                         itemStack2.setTag(compoundnbt);
                         return itemStack2;
                     }
-                    if (!itemStack1.isEmpty()) {
-                        if (itemStack1.getItem() == Items.GHAST_TEAR) {
-                            compoundnbt.putInt("Scared", 1);
-                            itemStack2.setTag(compoundnbt);
-                            return itemStack2;
-                        }
-                        if (!itemStack1.isEmpty()) {
-                            if (itemStack1.getItem() == ItemList.FROST_ESSENCE) {
-                                compoundnbt.putInt("Frozen", 1);
-                                itemStack2.setTag(compoundnbt);
-                                return itemStack2;
-                            }
-                            if (!itemStack1.isEmpty()) {
-                                if (itemStack1.getItem() == Items.SLIME_BALL) {
-                                    compoundnbt.putInt("Bouncy", 1);
-                                    itemStack2.setTag(compoundnbt);
-                                    return itemStack2;
-                                }
-                                if (!itemStack1.isEmpty()) {
-                                    if (itemStack1.getItem() == Items.MAGMA_CREAM) {
-                                        compoundnbt.putInt("Magma Walker", 1);
-                                        itemStack2.setTag(compoundnbt);
-                                        return itemStack2;
-                                    }
-                                    if (!itemStack1.isEmpty()) {
-                                        if (itemStack1.getItem() == ItemList.ENDER_ESSENCE) {
-                                            compoundnbt.putInt("Sight", 1);
-                                            itemStack2.setTag(compoundnbt);
-                                            return itemStack2;
-                                        }
-                                        if (!itemStack1.isEmpty()) {
-                                            if (itemStack1.getItem() == ItemList.SHULKER_ESSENCE) {
-                                                compoundnbt.putInt("Avoid", 1);
-                                                itemStack2.setTag(compoundnbt);
-                                                return itemStack2;
-                                            }
-                                            if (!itemStack1.isEmpty()) {
-                                                if (itemStack1.getItem() == Items.SHULKER_BOX) {
-                                                    compoundnbt.putInt("Pockets", 1);
-                                                    itemStack2.setTag(compoundnbt);
-                                                    return itemStack2;
-                                                }
-                                            } else {
-                                                return ItemStack.EMPTY;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                }
+            if (!itemStack1.isEmpty()) {
+                if (itemStack1.getItem() == Items.RABBIT_FOOT) {
+                    compoundnbt.putInt("Lucky", 1);
+                    itemStack2.setTag(compoundnbt);
+                    return itemStack2;
                 }
             }
-        }
+                if (!itemStack1.isEmpty()) {
+                    if (itemStack1.getItem() == Items.GHAST_TEAR) {
+                        compoundnbt.putInt("Scared", 1);
+                        itemStack2.setTag(compoundnbt);
+                        return itemStack2;
+                    }
+                }
 
-        return this.result;
+
+                if (!itemStack1.isEmpty()) {
+                    if (itemStack1.getItem() == ItemList.FROST_ESSENCE) {
+                        compoundnbt.putInt("Frozen", 1);
+                        itemStack2.setTag(compoundnbt);
+                        return itemStack2;
+                    }
+                }
+
+
+                if (!itemStack1.isEmpty()) {
+                    if (itemStack1.getItem() == Items.SLIME_BALL) {
+                        compoundnbt.putInt("Bouncy", 1);
+                        itemStack2.setTag(compoundnbt);
+                        return itemStack2;
+                    }
+                }
+
+
+                if (!itemStack1.isEmpty()) {
+                    if (itemStack1.getItem() == Items.MAGMA_CREAM) {
+                        compoundnbt.putInt("Magma Walker", 1);
+                        itemStack2.setTag(compoundnbt);
+                        return itemStack2;
+                    }
+                }
+
+                if (!itemStack1.isEmpty()) {
+                    if (itemStack1.getItem() == ItemList.ENDER_ESSENCE) {
+                        compoundnbt.putInt("Sight", 1);
+                        itemStack2.setTag(compoundnbt);
+                        return itemStack2;
+                    }
+                }
+
+                if (!itemStack1.isEmpty()) {
+                    if (itemStack1.getItem() == ItemList.SHULKER_ESSENCE) {
+                        compoundnbt.putInt("Avoid", 1);
+                        itemStack2.setTag(compoundnbt);
+                        return itemStack2;
+                    }
+                }
+                if (!itemStack1.isEmpty()) {
+                    if (itemStack1.getItem() == Items.SHULKER_BOX) {
+                        compoundnbt.putInt("Pockets", 1);
+                        itemStack2.setTag(compoundnbt);
+                        return itemStack2;
+                    }
+                }
+                if (!itemStack1.isEmpty()) {
+                    if (itemStack1.getItem() == Items.LAVA_BUCKET) {
+                        compoundnbt.putInt("Lava Walker", 1);
+                        itemStack2.setTag(compoundnbt);
+                        return itemStack2;
+                    }
+            }
+            }
+
+
+        return this.result.copy();
     }
 
     @Override
