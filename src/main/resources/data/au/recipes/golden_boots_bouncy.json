@@ -1,0 +1,12 @@
+{
+  "type": "au:forging",
+  "base": {
+    "item": "minecraft:golden_boots"
+  },
+  "addition": {
+    "item": "minecraft:slime_ball"
+  },
+  "result": {
+    "item": "minecraft:golden_boots"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "au:forging",
+  "base": {
+    "item": "minecraft:netherite_leggings"
+  },
+  "addition": {
+    "item": "minecraft:shulker_box"
+  },
+  "result": {
+    "item": "minecraft:netherite_leggings"
+  }
+}

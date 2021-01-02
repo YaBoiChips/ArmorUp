@@ -1,0 +1,12 @@
+{
+  "type": "au:forging",
+  "base": {
+    "item": "minecraft:iron_leggings"
+  },
+  "addition": {
+    "item": "minecraft:shulker_box"
+  },
+  "result": {
+    "item": "minecraft:iron_leggings"
+  }
+}
