@@ -1,14 +1,11 @@
 package AOChips.ArmorUp.util;
 
-import AOChips.ArmorUp.api.inventories.PocketInventory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
-import org.lwjgl.system.CallbackI;
 
 import java.util.concurrent.atomic.AtomicReference;
 

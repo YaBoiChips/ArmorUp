@@ -20,8 +20,7 @@ public class ModRecipeTypes {
         }
     };
 
-    static  {
+    static {
         Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(ArmorUp.AU, "forging"), FORGING);
-            }
-        }
-
+    }
+}

@@ -1,12 +1,13 @@
 package AOChips.ArmorUp.containers;
 
-import AOChips.ArmorUp.registries.ModContainerTypes;
 import AOChips.ArmorUp.containers.slots.PocketSlot;
+import AOChips.ArmorUp.registries.ModContainerTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.*;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 
 public class PocketContainer extends Container {
@@ -51,7 +52,7 @@ public class PocketContainer extends Container {
     }
 
     @Override
-    public ItemStack transferStackInSlot (PlayerEntity playerIn, int index){
+    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
         if (slot != null && slot.getHasStack()) {

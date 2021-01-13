@@ -19,5 +19,5 @@ public class ModContainerTypes {
             .register("pocket_container", () -> new ContainerType<>(PocketContainer::new));
 
 
-    }
+}
 

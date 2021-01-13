@@ -32,7 +32,6 @@ public class PocketScreen extends ContainerScreen<PocketContainer> {
     }
 
 
-
     @Override
     protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);

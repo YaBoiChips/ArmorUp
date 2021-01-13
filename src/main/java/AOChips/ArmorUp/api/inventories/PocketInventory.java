@@ -1,21 +1,14 @@
 package AOChips.ArmorUp.api.inventories;
 
 
-import AOChips.ArmorUp.containers.PocketContainer;
 import AOChips.ArmorUp.util.InventoryHelper;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
-import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.util.Constants;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 public class PocketInventory extends Inventory {
 
@@ -23,7 +16,6 @@ public class PocketInventory extends Inventory {
     public PocketInventory() {
         super(1);
     }
-
 
 
     @Override
@@ -48,20 +40,18 @@ public class PocketInventory extends Inventory {
     }
 
     @Override
-    public void closeInventory(PlayerEntity player)
-    {
+    public void closeInventory(PlayerEntity player) {
         ItemStack pocket = InventoryHelper.getPocketStack(player);
-            CompoundNBT compound = pocket.getTag();
-            if(compound == null)
-            {
-                compound = new CompoundNBT();
-            }
-            ListNBT list = new ListNBT();
-            InventoryHelper.saveAllItems(list, this);
-            compound.put("Items", list);
-            pocket.setTag(compound);
+        CompoundNBT compound = pocket.getTag();
+        if (compound == null) {
+            compound = new CompoundNBT();
         }
+        ListNBT list = new ListNBT();
+        InventoryHelper.saveAllItems(list, this);
+        compound.put("Items", list);
+        pocket.setTag(compound);
     }
+}
 
 
 

@@ -1,12 +1,9 @@
 package AOChips.ArmorUp.classes;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import java.util.List;
 
 public class ToolTipEvent {
     @SubscribeEvent
@@ -22,6 +19,7 @@ public class ToolTipEvent {
             }
         }
     }
+
     @SubscribeEvent
     public void luckToolTip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
@@ -35,6 +33,7 @@ public class ToolTipEvent {
             }
         }
     }
+
     @SubscribeEvent
     public void scaredToolTip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
@@ -48,6 +47,7 @@ public class ToolTipEvent {
             }
         }
     }
+
     @SubscribeEvent
     public void frozenToolTip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
@@ -61,6 +61,7 @@ public class ToolTipEvent {
             }
         }
     }
+
     @SubscribeEvent
     public void bouncyToolTip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
@@ -74,6 +75,7 @@ public class ToolTipEvent {
             }
         }
     }
+
     @SubscribeEvent
     public void unhotToolTip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
@@ -87,6 +89,7 @@ public class ToolTipEvent {
             }
         }
     }
+
     @SubscribeEvent
     public void darkseeToolTip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
@@ -100,6 +103,7 @@ public class ToolTipEvent {
             }
         }
     }
+
     @SubscribeEvent
     public void scaredtpToolTip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
@@ -113,6 +117,7 @@ public class ToolTipEvent {
             }
         }
     }
+
     @SubscribeEvent
     public void pocketToolTip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
@@ -125,8 +130,9 @@ public class ToolTipEvent {
             }
         }
     }
+
     @SubscribeEvent
-    public void lavaToolTip(ItemTooltipEvent event){
+    public void lavaToolTip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
         if (stack.hasTag()) {
             ITextComponent toolTip = (stack.getTag().toFormattedComponent());

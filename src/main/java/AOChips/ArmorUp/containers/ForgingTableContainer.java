@@ -1,9 +1,9 @@
 package AOChips.ArmorUp.containers;
 
 import AOChips.ArmorUp.api.crafting.ForgingRecipe;
+import AOChips.ArmorUp.lists.BlockList;
 import AOChips.ArmorUp.registries.ModContainerTypes;
 import AOChips.ArmorUp.registries.ModRecipeTypes;
-import AOChips.ArmorUp.lists.BlockList;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -22,7 +22,7 @@ public class ForgingTableContainer extends AbstractRepairContainer {
     private final List<ForgingRecipe> forgingRecipe;
 
 
-    public ForgingTableContainer(int windowId, PlayerInventory playerInv, PacketBuffer packetBuffer){
+    public ForgingTableContainer(int windowId, PlayerInventory playerInv, PacketBuffer packetBuffer) {
         this(windowId, playerInv, IWorldPosCallable.DUMMY);
 
     }
@@ -40,7 +40,7 @@ public class ForgingTableContainer extends AbstractRepairContainer {
     }
 
     @Override
-    protected ItemStack func_230301_a_(PlayerEntity player, ItemStack itemStack){
+    protected ItemStack func_230301_a_(PlayerEntity player, ItemStack itemStack) {
         itemStack.onCrafting(player.world, player, itemStack.getCount());
         this.field_234642_c_.onCrafting(player);
         this.consumeItem(0);

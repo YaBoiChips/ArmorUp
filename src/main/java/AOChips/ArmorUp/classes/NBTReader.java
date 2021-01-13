@@ -1,32 +1,22 @@
 package AOChips.ArmorUp.classes;
 
 import AOChips.ArmorUp.ArmorUp;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -108,13 +98,13 @@ public class NBTReader {
                     if (!(player.isSneaking())) {
                         if (!(player.isSwimming())) {
                             Vector3d vector3d = entity.getMotion();
-                                entity.setMotion(vector3d.x, 1.2, vector3d.z);
-                            }
+                            entity.setMotion(vector3d.x, 1.2, vector3d.z);
                         }
                     }
                 }
             }
         }
+    }
 
 
     @SubscribeEvent
@@ -184,18 +174,19 @@ public class NBTReader {
             }
         }
     }
+
     @SubscribeEvent
     public static void magmaWalker(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
         World world = player.getEntityWorld();
         BlockState blockstate = Blocks.OBSIDIAN.getDefaultState();
-        BlockPos pos = new BlockPos(player.getPosX(), player.getPosY()-1, player.getPosZ());
+        BlockPos pos = new BlockPos(player.getPosX(), player.getPosY() - 1, player.getPosZ());
         BlockState blockstate1 = world.getBlockState(pos);
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
-            if (stack.getTag().getInt("Lava Walker") <=1 ) {
+            if (stack.getTag().getInt("Lava Walker") <= 1) {
                 if (blockstate1 == Blocks.LAVA.getDefaultState())
-                world.setBlockState(pos, blockstate);
+                    world.setBlockState(pos, blockstate);
             }
         }
     }

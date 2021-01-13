@@ -2,7 +2,10 @@ package AOChips.ArmorUp.registries;
 
 import AOChips.ArmorUp.items.ForgingTableBlock;
 import AOChips.ArmorUp.lists.BlockList;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraftforge.common.ToolType;
