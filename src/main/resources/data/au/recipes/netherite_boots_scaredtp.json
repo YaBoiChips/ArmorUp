@@ -1,0 +1,12 @@
+{
+  "type": "au:forging",
+  "base": {
+    "item": "minecraft:netherite_boots"
+  },
+  "addition": {
+    "item": "au:shulker_essence"
+  },
+  "result": {
+    "item": "minecraft:netherite_boots"
+  }
+}

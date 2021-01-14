@@ -58,7 +58,7 @@ public class NBTReader {
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
             if (!player.getCooldownTracker().hasCooldown(stack.getItem())) {
-                if (stack.getTag().getInt("Scared") >= 1 && player.getHealth() >= 4) {
+                if (stack.getTag().getInt("Scared") >= 1 && player.getHealth() <= 4) {
                     player.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 500, 0, false, false));
                     player.getCooldownTracker().setCooldown(stack.getItem(), 20000);
                 }
@@ -72,7 +72,7 @@ public class NBTReader {
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.CHEST);
         if (stack.hasTag()) {
             if (!player.getCooldownTracker().hasCooldown(stack.getItem())) {
-                if (stack.getTag().getInt("Frozen") >= 1 && player.getHealth() >= 4) {
+                if (stack.getTag().getInt("Frozen") >= 1 && player.getHealth() <= 4) {
                     player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 200, 250, false, false));
                     player.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 200, 13, false, false));
                     player.addPotionEffect(new EffectInstance(Effects.REGENERATION, 200, 4, false, false));
@@ -131,7 +131,7 @@ public class NBTReader {
         if (stack.hasTag()) {
             if (stack.getTag().getInt("Magma Walker") >= 1) {
                 if (source == DamageSource.HOT_FLOOR) {
-                    event.setAmount(0.0f);
+                    event.isCanceled();
                 }
             }
         }
@@ -143,12 +143,13 @@ public class NBTReader {
         PlayerEntity player = event.player;
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.HEAD);
         BlockPos pos = event.player.getPosition();
-        int i = world.getLight(pos);
+        BlockState block = world.getBlockState(pos);
+        int i = block.getLightValue();
         if (stack.hasTag()) {
             if (stack.getTag().getInt("Sight") <= 1) {
-                if (i <= 1) {
-                    player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 50, 0, false, false));
-                }
+                if (i <= 3) {
+                    player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 300, 0, false, false));
+                } else player.clearActivePotions();
             }
         }
     }
@@ -160,11 +161,11 @@ public class NBTReader {
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);
         if (stack.hasTag()) {
             if (!player.getCooldownTracker().hasCooldown(stack.getItem())) {
-                if (stack.getTag().getInt("Avoid") >= 1 && player.getHealth() >= 4) {
+                if (stack.getTag().getInt("Avoid") >= 1 && player.getHealth() <= 4) {
                     if (!world.isRemote) {
-                        double d0 = player.getPosX() + (player.getRNG().nextDouble() - 0.5D) * 16.0D;
+                        double d0 = player.getPosX() + (player.getRNG().nextDouble() - 0.7D) * 16.0D;
                         double d1 = player.getPosY();
-                        double d2 = player.getPosZ() + (player.getRNG().nextDouble() - 0.5D) * 16.0D;
+                        double d2 = player.getPosZ() + (player.getRNG().nextDouble() - 0.7D) * 16.0D;
                         player.attemptTeleport(d0, d1, d2, false);
                         player.getCooldownTracker().setCooldown(stack.getItem(), 20000);
 
