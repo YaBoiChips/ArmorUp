@@ -1,6 +1,8 @@
 package AOChips.ArmorUp.classes;
 
 import AOChips.ArmorUp.ArmorUp;
+import AOChips.ArmorUp.client.keybind.KeyBindingList;
+import AOChips.ArmorUp.lists.BlockList;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -21,6 +23,7 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.List;
 
@@ -106,6 +109,21 @@ public class NBTReader {
         }
     }
 
+    @SubscribeEvent
+    public static void rocketPants(TickEvent.PlayerTickEvent event) {
+        Entity entity = event.player.getEntity();
+        PlayerEntity player = event.player;
+        ItemStack stack = player.getItemStackFromSlot(EquipmentSlotType.LEGS);
+        if (stack.hasTag()) {
+            if (stack.getTag().getInt("Rocket Pants") >= 1) {
+                if (KeyBindingList.ROCKET_KEY.isPressed()) {
+                    Vector3d vector3d = entity.getMotion();
+                    entity.setMotion(vector3d.x, 0.5, vector3d.z);
+                }
+            }
+        }
+    }
+
 
     @SubscribeEvent
     public static void fallReducer(LivingFallEvent event) {
@@ -180,7 +198,7 @@ public class NBTReader {
     public static void magmaWalker(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
         World world = player.getEntityWorld();
-        BlockState blockstate = Blocks.OBSIDIAN.getDefaultState();
+        BlockState blockstate = BlockList.DECAYING_STONE.getDefaultState();
         BlockPos pos = new BlockPos(player.getPosX(), player.getPosY() - 1, player.getPosZ());
         BlockState blockstate1 = world.getBlockState(pos);
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.FEET);

@@ -32,9 +32,7 @@ public class ArmorUp {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
         ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
-        MinecraftForge.EVENT_BUS.register(new ToolTipEvent());
         modEventBus.register(new ModRecipeSerializers());
-        MinecraftForge.EVENT_BUS.register(new KeyBindingList());
 
     }
 

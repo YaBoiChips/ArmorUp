@@ -81,11 +81,14 @@ public class ForgingRecipe implements IRecipe<IInventory>, IForgingRecipe {
                 compoundnbt.putInt("Lava Walker", 1);
                 itemStack2.setTag(compoundnbt);
                 return itemStack2;
+            } else if (itemStack1.getItem() == Items.ELYTRA) {
+                compoundnbt.putInt("Rocket Pants", 1);
+                itemStack2.setTag(compoundnbt);
+                return itemStack2;
             }
         }
-
-        return this.result.copy();
-    }
+            return this.result.copy();
+        }
 
     @Override
     public boolean canFit(int width, int height) {

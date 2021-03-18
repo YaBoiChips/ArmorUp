@@ -1,0 +1,12 @@
+{
+  "type": "au:forging",
+  "base": {
+    "item": "minecraft:diamond_leggings"
+  },
+  "addition": {
+    "item": "minecraft:elytra"
+  },
+  "result": {
+    "item": "minecraft:diamond_leggings"
+  }
+}

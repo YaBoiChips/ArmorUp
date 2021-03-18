@@ -20,12 +20,13 @@ public class KeyBindHandler {
     public static void doPockets(TickEvent.PlayerTickEvent event) {
         PlayerEntity player = event.player;
         ItemStack stack = event.player.getItemStackFromSlot(EquipmentSlotType.LEGS);
+        if (player.getEntityWorld().isRemote){
         if (player instanceof ServerPlayerEntity) {
             if (stack.hasTag()) {
                 if (stack.getTag().getInt("Pockets") >= 1) {
                     if (KeyBindingList.POCKET_KEY.isPressed()) {
                         NetworkHooks.openGui((ServerPlayerEntity) player, new SimpleNamedContainerProvider((id, playerInventory, entity) -> new PocketContainer(id, player.inventory, new PocketInventory()), player.getItemStackFromSlot(EquipmentSlotType.LEGS).getDisplayName()));
-
+                    }
                     }
                 }
             }
