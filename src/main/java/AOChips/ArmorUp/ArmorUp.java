@@ -33,7 +33,6 @@ public class ArmorUp {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
         ModContainerTypes.CONTAINER_TYPES.register(modEventBus);
         modEventBus.register(new ModRecipeSerializers());
-
     }
 
     public static void register() {
@@ -51,6 +50,7 @@ public class ArmorUp {
         ScreenManager.registerFactory(ModContainerTypes.FORGING_CONTAINER.get(), ForgingTableScreen::new);
         ScreenManager.registerFactory(ModContainerTypes.POCKET_CONTAINER.get(), PocketScreen::new);
         KeyBindingList.register();
+
     }
 
     public static final ItemGroup AUTAB = new ItemGroup("auTab") {

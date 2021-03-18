@@ -12,12 +12,10 @@ public class KeyBindingList {
     public static KeyBinding ROCKET_KEY = new KeyBinding("ROCKET", GLFW.GLFW_KEY_SPACE, "ArmorUp");
 
     public static void register() {
-        World world = Minecraft.getInstance().world;
-        if (world.isRemote) {
             ClientRegistry.registerKeyBinding(POCKET_KEY);
             ClientRegistry.registerKeyBinding(ROCKET_KEY);
         }
     }
 
 
-}
+
