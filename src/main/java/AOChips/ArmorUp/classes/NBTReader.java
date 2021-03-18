@@ -118,7 +118,7 @@ public class NBTReader {
             if (stack.getTag().getInt("Rocket Pants") >= 1) {
                 if (KeyBindingList.ROCKET_KEY.isPressed()) {
                     Vector3d vector3d = entity.getMotion();
-                    entity.setMotion(vector3d.x, 0.5, vector3d.z);
+                    entity.setVelocity(vector3d.x, 0.5, vector3d.z);
                 }
             }
         }
